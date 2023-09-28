@@ -1,0 +1,10 @@
+div.game-container {
+    margin: 0 auto;
+    max-width: 32rem;
+    grid-template-areas: 
+    "header-draw-pile header header header header"
+    "room-button room-button . . time"
+    "opponent opponent opponent opponent opponent"
+    "opponent-bet play-field play-field play-field player-bet"
+    "player player player player player-draw-pile";
+}
