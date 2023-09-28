@@ -1,10 +1,108 @@
+/* For debug purposes */
+* {
+    border: 1px solid red;
+}
+
 div.game-container {
+    height: 95vh;
     margin: 0 auto;
     max-width: 32rem;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-rows: 60px 60px 100px 100px 100px;
     grid-template-areas: 
-    "header-draw-pile header header header header"
-    "room-button room-button . . time"
-    "opponent opponent opponent opponent opponent"
-    "opponent-bet play-field play-field play-field player-bet"
-    "player player player player player-draw-pile";
+        "header header header header header"
+        "room-button room-button . . time"
+        "opponent-draw-pile opponent opponent opponent opponent"
+        "opponent-bet play-field play-field play-field player-bet"
+        "player player player player player-draw-pile";
+}
+
+div.header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.headerText {
+    height:50px;
+    text-align: center;
+    margin: 0;
+}
+
+#gameName {
+    grid-column:1/3;
+}
+
+#gameID {
+    grid-column:3/4;
+    padding-top:10px;
+}
+
+div.room-button {
+    grid-area: room-button;
+    margin:10px;
+}
+
+.gameInput {
+    width:100px;
+    height:30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 25px;
+    text-align: center;
+}
+
+.btn {
+    width:100px;
+    height:30px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#HostButton {
+    margin-left:2cqmax;
+}
+
+div.time {
+    grid-area: time;
+}
+
+div.opponent {
+    grid-area: opponent;
+}
+
+div.opponent-bet {
+    grid-area: opponent-bet;
+}
+
+div.play-field {
+    grid-area: play-field;
+}
+
+div.player-bet {
+    grid-area: player-bet;
+}
+
+div.player {
+    grid-area: player;
+    display: flex;
+    gap: 0.25rem;
+    justify-content: center;
+}
+
+div.card {
+    border: 1px solid #111;
+    border-radius: 8px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    aspect-ratio: 2.25 / 3.5;
+    font-size: large;
+    font-weight: bold;
+}
+
+div.player-draw-pile {
+    grid-area: player-draw-pile;
 }
