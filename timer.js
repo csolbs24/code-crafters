@@ -6,9 +6,11 @@ var timerId = setInterval(countdown, 1000);
 function countdown() {
   if (timeLeft == 0) {
     clearTimeout(timerId);
-    //do Something or trigger something for a listener. ... 
+    elem.innerHTML = timeLeft;
+    //call a function to submit cards
+    //in the case that the cards are submitted before we reach zero just set time left to zero.
   } else {
-    elem.innerHTML = timeLeft + ' seconds remaining';
+    elem.innerHTML = timeLeft;
     timeLeft--;
   }
 }
