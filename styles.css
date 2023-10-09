@@ -124,6 +124,10 @@ div.card-front {
     font-weight: bold;
 }
 
+div.card-back {
+    background-image: repeating-linear-gradient(160deg, var(--blue), #111);
+}
+
 div.card > img {
     margin: 5%;
     max-width: 90%;
