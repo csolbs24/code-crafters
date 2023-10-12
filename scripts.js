@@ -8,9 +8,11 @@
 // Update HMTL for bluff cards
 // HTML for overflow counts
 
+import { default as countdown } from "./timer";
 
 // Attach the function to the window.onload event
 
+// Convert these to functions
 window.onload = function(event)
 {
   const letter = "N"

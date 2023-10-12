@@ -14,3 +14,5 @@ function countdown() {
     timeLeft--;
   }
 }
+
+export default countdown;
