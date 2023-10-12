@@ -1,3 +1,15 @@
+:root {
+    --gray: #717568;
+    --blue: #6faae5;
+    --yellow: #ebb429;
+    --green: #3dcb5c;
+    --red: #e34e28;
+}
+
+.hidden {
+    display: none;
+}
+
 /* For debug purposes */
 * {
     border: 1px solid red;
@@ -6,10 +18,11 @@
 div.game-container {
     height: 95vh;
     margin: 0 auto;
-    max-width: 32rem;
+    max-width: 64rem;
     display: grid;
     gap: 0.5rem;
-    grid-template-rows: 60px 60px 100px 100px 100px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr 2fr 2fr 2fr;
     grid-template-areas: 
         "header header header header header"
         "room-button room-button . . time"
@@ -88,21 +101,95 @@ div.player-bet {
 div.player {
     grid-area: player;
     display: flex;
-    gap: 0.25rem;
+    gap: 0.75rem;
+    padding:0.75rem;
     justify-content: center;
 }
 
 div.card {
-    border: 1px solid #111;
+    border: 2px solid #111;
     border-radius: 8px;
-    display: flex;
+    aspect-ratio: 2.25 / 3.5;
+    box-shadow: 0px 0px 4px 4px #EEE;
+    width: 100px;
+    background-color: #FAF9F6;
+}
+
+div.card-front {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     align-content: center;
     justify-content: center;
-    aspect-ratio: 2.25 / 3.5;
     font-size: large;
     font-weight: bold;
 }
 
+div.card-back {
+    background-image: repeating-linear-gradient(160deg, var(--blue), #111);
+}
+
+div.card > img {
+    margin: 5%;
+    max-width: 90%;
+}
+div.card > p {
+    text-align: center;
+    margin:0;
+    font-size: 250%;
+}
+
 div.player-draw-pile {
     grid-area: player-draw-pile;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+div.player-draw-pile .card {
+    box-shadow: none;
+}
+
+.cards:nth-child(2) {
+    z-index: 1;
+}
+
+.cards:nth-child(3) {
+    z-index: 2;
+}
+
+.cards:nth-child(4) {
+    z-index: 3;
+}
+
+.cards:nth-child(5) {
+    z-index: 4;
+}
+
+.cards-2 {
+    display: grid;
+    grid-template-rows: 6px 1fr;
+}
+
+.cards-3 {
+    display: grid;
+    grid-template-rows: 6px 6px 1fr;
+}
+
+.cards-4 {
+    display: grid;
+    grid-template-rows: 6px 6px 6px 1fr;
+}
+
+.cards-5 {
+    display: grid;
+    grid-template-rows: 6px 6px 6px 6px 1fr;
+}
+
+p.card-count {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
 }
