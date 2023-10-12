@@ -8,6 +8,41 @@
 // Update HMTL for bluff cards
 // HTML for overflow counts
 
+
+// Attach the function to the window.onload event
+
+window.onload = function(event)
+{
+  const letter = "N"
+  const PlayerHand = document.getElementById("CurrentPlayerHand");
+  const cardTemplate = `<div class="card"><p>`+letter+`</p></div>`;
+  PlayerHand.insertAdjacentHTML("beforeend", cardTemplate);
+};
+
+window.onload = function(event)
+{
+  const letter1 = "X"
+  const cardTemplate1 = `<div class="card"><p>`+letter1+`</p></div>`;
+
+  const letter2 = "X"
+  const cardTemplate2 = `<div class="card"><p>`+letter2+`</p></div>`;
+
+  const playerBet = document.getElementById("PlayerBet");
+  playerBet.insertAdjacentHTML("beforeend", cardTemplate1);
+  playerBet.insertAdjacentHTML("beforeend", cardTemplate2);
+}
+
+window.onload = function(event)
+{
+  const letter = "P";
+  const playerPlayed = document.getElementById("PlayField");
+  const cardTemplate = `<div class="card"><p>`+letter+`</p></div>`;
+  playerPlayed.innerHTML = cardTemplate;
+}
+
+
+
+
 // Timer
 
 // Function to generate a random 4-digit number
