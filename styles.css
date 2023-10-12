@@ -82,6 +82,10 @@ div.time {
     grid-area: time;
 }
 
+#opponent-draw-pile {
+    grid-area: opponent-draw-pile;
+}
+
 div.opponent {
     grid-area: opponent;
 }
@@ -132,20 +136,24 @@ div.card > img {
     margin: 5%;
     max-width: 90%;
 }
+
 div.card > p {
     text-align: center;
     margin:0;
     font-size: 250%;
 }
 
-div.player-draw-pile {
+#player-draw-pile {
     grid-area: player-draw-pile;
+}
+
+.draw-pile {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-div.player-draw-pile .card {
+div.draw-pile .card {
     box-shadow: none;
 }
 
