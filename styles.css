@@ -11,7 +11,7 @@
 }
 
 /* For debug purposes */
-* {
+div.game-container > * {
     border: 1px solid red;
 }
 
@@ -21,13 +21,13 @@ div.game-container {
     max-width: 64rem;
     display: grid;
     gap: 0.5rem;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr 1fr 2fr 2fr 2fr;
+    grid-template-columns: repeat(5, 2fr);
+    grid-template-rows: 3.5rem 3rem repeat(3, minmax(0, 1fr));
     grid-template-areas: 
         "header header header header header"
-        "room-button room-button . . time"
+        "room-button room-button room-button . time"
         "opponent-draw-pile opponent opponent opponent opponent"
-        "opponent-bet play-field play-field play-field player-bet"
+        "opponent-bet opponent-bet play-field player-bet player-bet"
         "player player player player player-draw-pile";
 }
 
@@ -96,14 +96,26 @@ div.opponent-bet {
 
 div.play-field {
     grid-area: play-field;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 div.player-bet {
     grid-area: player-bet;
 }
 
+div.opponent {
+    grid-area: opponent;
+}
+
 div.player {
     grid-area: player;
+}
+
+div.player,
+div.opponent {
     display: flex;
     gap: 0.75rem;
     padding:0.75rem;
@@ -115,7 +127,8 @@ div.card {
     border-radius: 8px;
     aspect-ratio: 2.25 / 3.5;
     box-shadow: 0px 0px 4px 4px #EEE;
-    width: 100px;
+    width: 5rem;
+    height: calc(5rem * 3.5 / 2.25);
     background-color: #FAF9F6;
 }
 
@@ -133,14 +146,15 @@ div.card-back {
 }
 
 div.card > img {
+    border: 1px solid #111111;
     margin: 5%;
-    max-width: 90%;
+    max-width: calc(90% - 2px); /* Accounting for border px */
 }
 
 div.card > p {
     text-align: center;
     margin:0;
-    font-size: 250%;
+    font-size: 180%;
 }
 
 #player-draw-pile {
