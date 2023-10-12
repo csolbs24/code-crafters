@@ -90,8 +90,19 @@ div.opponent {
     grid-area: opponent;
 }
 
-div.opponent-bet {
+#opponent-bet-field {
     grid-area: opponent-bet;
+}
+
+#player-bet-field {
+    grid-area: player-bet;
+}
+
+div.bet-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }
 
 div.play-field {
@@ -100,10 +111,6 @@ div.play-field {
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
-}
-
-div.player-bet {
-    grid-area: player-bet;
 }
 
 div.opponent {
