@@ -11,15 +11,26 @@
     --gunmetal: #022B3A;
     --teal: #1F7A8C;
     --light-blue: #BFDBF7;
-    --light-purple: #E1E5F2;
-}
-
-html {
-    background-color: var(--white);
+    --light-purple: #e1e5f2;
+    --lighter-purple: #f0f2f8;
 }
 
 .hidden {
     display: none;
+}
+
+html {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    letter-spacing: 0.15rem;
 }
 
 button {
@@ -31,11 +42,6 @@ button {
 button:hover {
     cursor: pointer;
 }
-
-/* html,
-body {
-    height: 100%;
-} */
 
 body {
     margin: 0 2rem;
@@ -61,7 +67,9 @@ header {
     border-radius: 0 0 1rem 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: var(--white);
+    place-items: center;
+    gap: 1rem;
+    background-color: var(--lighter-purple);
     box-shadow: 0 0 0.25rem var(--light-purple);
 }
 
