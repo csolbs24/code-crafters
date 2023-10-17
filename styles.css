@@ -62,15 +62,23 @@ body {
 }
 
 header {
-    padding: 1rem;
+    padding: 1rem 5%;
     border: 0.125rem solid var(--black);
     border-radius: 0 0 1rem 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    place-items: center;
     gap: 1rem;
+    align-items: center;
     background-color: var(--lighter-purple);
     box-shadow: 0 0 0.25rem var(--light-purple);
+}
+
+header h1 {
+    font-size: xx-large;
+}
+
+header h3 {
+    justify-self: center;
 }
 
 header div.room-buttons {
@@ -90,10 +98,13 @@ header input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* On Firefox */
 header input[type=number] {
   -moz-appearance: textfield;
+}
+
+header input[type=number] {
+    background-color: var(--lighter-purple);
 }
 
 header div.room-buttons input {
