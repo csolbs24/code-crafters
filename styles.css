@@ -134,7 +134,7 @@ div.timer > *:first-child {
 
 #table {
     width: 32rem;
-    height: 32rem;
+    height: 30rem;
     border: 1px solid var(--black);
     margin: 0 auto;
     transform: rotate3d();
