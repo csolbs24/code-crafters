@@ -132,10 +132,51 @@ div.timer > *:first-child {
     margin-right: 0.75rem;
 }
 
+main {
+    perspective: 600px;
+}
+
 #table {
-    width: 32rem;
+    width: 65%;
     height: 30rem;
     border: 1px solid var(--black);
+    border-radius: 3rem;
     margin: 0 auto;
-    transform: rotate3d();
+    transform: rotate3d(1, 0, 0, 60deg);
+    background-image: url(./images/table-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    top: -3rem;
+}
+
+div.hand {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    left: 50%;
+    transform: translate(-50%, 0.25rem);
+}
+
+#opponent-hand {
+    position: fixed;
+
+}
+
+#player-hand {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+div.card {
+    height: 6rem;
+    width: 4rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
 }
