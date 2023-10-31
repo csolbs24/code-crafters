@@ -5,12 +5,14 @@ function FIREBASElogin(host, GameID){
         if (user) {
             const GameRef = firebase.database().ref(`${GameID}`);
             GameRef.set({
-                HostCards: [""],
-                HostBet: [""],
+                HostBetCards: [""],
+                HostSubmittedCard: [""],
                 HostCardAmount: 5,
-                PlayerCards: [""],
-                PlayerBet: [""],
+                HostDeckAmount: 0,
+                PlayerBetCards: [""],
+                PlayerSubmittedCard: [""],
                 PlayerCardAmount: 5,
+                PlayerDeckAmount: 0,
                 GameOver: false,
                 GameStarted: false,
                 RoundOver: false,
