@@ -9,14 +9,19 @@
 // HTML for overflow counts
 
 import { default as generateRandomNumber } from "./modules/generateRandomNumber.mjs";
+import { FIREBASElogin, FIREBASEINIT} from './modules/firebase.mjs';
 
 // Attach click event listener to the button
-document.getElementById('HostButton').addEventListener('click', handleButtonClick);
+document.getElementById('HostButton').addEventListener('click', handleHostButtonClick);
 
 // Function to handle button click
-function handleButtonClick() {
+function handleHostButtonClick() {
   const randomNumber = generateRandomNumber();
   document.getElementById('gameID').textContent = `GAMEID: ${randomNumber}`;
+  FIREBASElogin(true, randomNumber);
+
+  // Change this to a be in a INIT-FUNCTION
+  FIREBASEINIT(randomNumber);
 }
 
 // Timer
