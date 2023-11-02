@@ -9,10 +9,13 @@
 // HTML for overflow counts
 
 import { default as generateRandomNumber } from "./modules/generateRandomNumber.mjs";
-import { FIREBASElogin, FIREBASEINIT} from './modules/firebase.mjs';
+import { FIREBASElogin, FIREBASEINIT, FIREBASECheckForGame, FIREBASEStartGame} from './modules/firebase.mjs';
 
-// Attach click event listener to the button
+// Attach click event listener to the Host button
 document.getElementById('HostButton').addEventListener('click', handleHostButtonClick);
+
+// Attach click event listener to the Join button
+document.getElementById('JoinButton').addEventListener('click', handleJoinButtonClick);
 
 // Function to handle button click
 function handleHostButtonClick() {
@@ -22,6 +25,16 @@ function handleHostButtonClick() {
 
   // Change this to a be in a INIT-FUNCTION
   FIREBASEINIT(randomNumber);
+}
+
+async function handleJoinButtonClick() {
+  const GameID = document.getElementById("gameGameID").value;
+  const GameFound =  FIREBASECheckForGame(GameID);
+  if (GameFound)
+  {
+    FIREBASEINIT(GameID);
+    FIREBASEStartGame(GameID);
+  }
 }
 
 // Timer
