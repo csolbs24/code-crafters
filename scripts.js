@@ -8,27 +8,18 @@
 // Update HMTL for bluff cards
 // HTML for overflow counts
 
-// Attach click event listener to the Host button
-document.getElementById('HostButton').addEventListener('click', handleHostButtonClick);
+let card = {picture:"", value:0};
+
+
+import { default as generateRandomNumber } from "./mjs/generateRandomNumber.mjs";
+
+// Attach click event listener to the button
+document.getElementById('HostButton').addEventListener('click', handleButtonClick);
 
 // Function to handle button click
-function handleHostButtonClick() {
+function handleButtonClick() {
   const randomNumber = generateRandomNumber();
   document.getElementById('gameID').textContent = `GAMEID: ${randomNumber}`;
-  FIREBASElogin(true, randomNumber);
-
-  // Change this to a be in a INIT-FUNCTION
-  FIREBASEINIT(randomNumber);
-}
-
-async function handleJoinButtonClick() {
-  const GameID = document.getElementById("gameGameID").value;
-  const GameFound =  FIREBASECheckForGame(GameID);
-  if (GameFound)
-  {
-    FIREBASEINIT(GameID);
-    FIREBASEStartGame(GameID);
-  }
 }
 
 // Timer
