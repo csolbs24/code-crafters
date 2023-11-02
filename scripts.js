@@ -8,7 +8,10 @@
 // Update HMTL for bluff cards
 // HTML for overflow counts
 
-import { default as generateRandomNumber } from "./modules/generateRandomNumber.mjs";
+let card = {picture:"", value:0};
+
+
+import { default as generateRandomNumber } from "./mjs/generateRandomNumber.mjs";
 
 // Attach click event listener to the button
 document.getElementById('HostButton').addEventListener('click', handleButtonClick);
