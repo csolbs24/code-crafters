@@ -11,12 +11,6 @@
 // Attach click event listener to the Host button
 document.getElementById('HostButton').addEventListener('click', handleHostButtonClick);
 
-
-let card = {picture:"", value:0};
-
-// Attach click event listener to the Join button
-document.getElementById('JoinButton').addEventListener('click', handleJoinButtonClick);
-
 // Function to handle button click
 function handleHostButtonClick() {
   const randomNumber = generateRandomNumber();
