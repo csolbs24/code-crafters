@@ -8,9 +8,6 @@
 // Update HMTL for bluff cards
 // HTML for overflow counts
 
-import { default as generateRandomNumber } from "./mjs/generateRandomNumber.mjs";
-import { FIREBASElogin, FIREBASEINIT, FIREBASECheckForGame, FIREBASEStartGame} from './mjs/firebase.mjs';
-
 // Attach click event listener to the Host button
 document.getElementById('HostButton').addEventListener('click', handleHostButtonClick);
 
