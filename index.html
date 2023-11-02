@@ -5,7 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- THIS IS FOR FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyB4zgFbxR_l_xxBr7hWsqcNWbWuPx6h6rw",
+        authDomain: "bluffbout.firebaseapp.com",
+        databaseURL: "https://bluffbout-default-rtdb.firebaseio.com",
+        projectId: "bluffbout",
+        storageBucket: "bluffbout.appspot.com",
+        messagingSenderId: "1040200493062",
+        appId: "1:1040200493062:web:93e1816fa35ae9e6bcbb87"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <!-- THIS IS FOR FIREBASE-->
     <script src="scripts.js" type="module"></script>
+
 </head>
 <body>
     <div class="game-container">
@@ -16,8 +35,8 @@
         </div>
 
         <div class="room-button">
-            <input class="gameInput" type="text">
-            <button class="btn">Join</button>
+            <input id="gameGameID" class="gameInput" type="text">
+            <button id="JoinButton" class="btn">Join</button>
             <button id="HostButton"class="btn">Host</button>
         </div>
 
