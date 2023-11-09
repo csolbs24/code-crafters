@@ -16,9 +16,7 @@
     --lighter-purple: #f0f2f8;
 }
 
-.hidden {
-    display: none;
-}
+
 
 html {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -102,7 +100,7 @@ header input::-webkit-inner-spin-button {
 }
 /* On Firefox */
 header input[type=number] {
-  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 header input[type=number] {
@@ -139,7 +137,7 @@ main {
 #table {
     width: 65%;
     height: 30rem;
-    border: 1px solid var(--black);
+    border: 10px solid var(--gunmetal);
     border-radius: 3rem;
     margin: 0 auto;
     transform: rotate3d(1, 0, 0, 60deg);
@@ -147,7 +145,7 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    top: -3rem;
+    top: 3rem;
 }
 
 div.hand {
@@ -155,19 +153,28 @@ div.hand {
     flex-wrap: nowrap;
     gap: 0.75rem;
     left: 50%;
+    position: fixed;
     transform: translate(-50%, 0.25rem);
 }
 
 #opponent-hand {
+    display: flex;
+    flex-direction: row; /* Ensure items are laid out in a row */
+    align-items: center; /* Vertically center the content */
+    justify-content: flex-start; /* Move the content to the left */
+    gap: 0.75rem; /* Add some space between elements */
     position: fixed;
-
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #player-hand {
-    padding: 1rem;
     display: flex;
-    flex-wrap: nowrap;
-    gap: 0.75rem;
+    flex-direction: row; /* Ensure items are laid out in a row */
+    align-items: center; /* Vertically center the content */
+    justify-content: flex-end; /* Move the content to the right */
+    gap: 0.75rem; /* Add some space between elements */
     position: fixed;
     bottom: 0;
     left: 50%;
@@ -177,6 +184,59 @@ div.hand {
 div.card {
     height: 6rem;
     width: 4rem;
-    border: 1px solid black;
+    border: 1px solid var(--black);
     border-radius: 0.5rem;
+    background-color: var(--blue);
+}
+
+
+
+.draw-pile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+div.draw-pile .card {
+    box-shadow: none;
+}
+.cards:nth-child(2) {
+    z-index: 1;
+}
+.cards:nth-child(3) {
+    z-index: 2;
+}
+.cards:nth-child(4) {
+    z-index: 3;
+}
+.cards:nth-child(5) {
+    z-index: 4;
+}
+
+.cards-2 {
+    display: grid;
+    grid-template-rows: 6px 1fr;
+    
+}
+.cards-3 {
+    display: grid;
+    grid-template-rows: 6px 6px 1fr;
+}
+.cards-4 {
+    display: grid;
+    grid-template-rows: 6px 6px 6px 1fr;
+}
+.cards-5 {
+    display: grid;
+    grid-template-rows: 6px 6px 6px 6px 1fr;
+}
+
+p.card-count {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
 }
