@@ -25,7 +25,7 @@ div.game-container {
     grid-template-rows: 1fr 1fr 2fr 2fr 2fr;
     grid-template-areas: 
         "header header header header header"
-        "room-button room-button . . time"
+        "room-button room-button room-button room-button time"
         "opponent-draw-pile opponent opponent opponent opponent"
         "opponent-bet play-field play-field play-field player-bet"
         "player player player player player-draw-pile";
@@ -84,6 +84,10 @@ div.time {
 
 div.opponent {
     grid-area: opponent;
+    display: flex;
+    gap: 0.75rem;
+    padding:0.75rem;
+    justify-content: center;
 }
 
 div.opponent-bet {

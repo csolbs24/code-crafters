@@ -1,8 +1,8 @@
 // FIREBASE: Creates User and Game if hosted
-function FIREBASElogin(host, GameID){
+function FIREBASECreateDatabase(GameID){
     
     firebase.auth().onAuthStateChanged((user) => {
-        if (user && host) {
+        if (user) {
             const GameRef = firebase.database().ref(`${GameID}`);
             GameRef.set({
                 HostBetCards: [""],
@@ -14,14 +14,12 @@ function FIREBASElogin(host, GameID){
                 PlayerCardAmount: 5,
                 PlayerDeckAmount: 0,
                 GameOver: false,
-                GameStarted: false,
+                GameWinner: "",
+                RoundWinner:  "",
                 RoundOver: false,
-            });
-
-            if (host)
-            {        
-                GameRef.onDisconnect().remove();
-            }
+            });  
+                
+            GameRef.onDisconnect().remove();
         }
     });
     
@@ -31,23 +29,6 @@ function FIREBASElogin(host, GameID){
         // ...
         console.log(errorCode, errorMessage);
     });
-}
-
-function FIREBASEINIT (GameID){
-    const GameRef = firebase.database().ref(`${GameID}`);
-    const GameStartedRef = GameRef.child("GameStarted");
-
-    // Runs Every Time the GameData Changes
-    GameRef.on('value', (snapshot) => {
-        const GameData = snapshot.val();
-        console.log("GAME DATA CHANGED")
-    })
-
-    // Runs Every Time the GameStarted Changes
-    GameStartedRef.on('value', (snapshot) => {
-        const GameData = snapshot.val();
-        console.log("GAME STARTED");
-    })
 }
 
 // MAKE THIS RETURN ACTUAL VARIABLE
@@ -70,4 +51,4 @@ function FIREBASEStartGame(GameID)
     GameRef.update({ GameStarted: true });
 }
 
-export {FIREBASElogin, FIREBASEINIT, FIREBASECheckForGame, FIREBASEStartGame};
+export {FIREBASECreateDatabase, FIREBASECheckForGame, FIREBASEStartGame};
