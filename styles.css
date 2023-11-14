@@ -140,12 +140,12 @@ main {
     border: 10px solid var(--gunmetal);
     border-radius: 3rem;
     margin: 0 auto;
-    transform: rotate3d(1, 0, 0, 60deg);
+    transform: rotate3d(1, 0, 0, 40deg);
     background-image: url(./images/table-background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    top: 3rem;
+    top: 12rem;
 }
 
 div.hand {
@@ -165,7 +165,7 @@ div.hand {
     gap: 0.75rem; /* Add some space between elements */
     position: fixed;
     top: 3rem;
-    left: 50%;
+    left: calc(50% + 0rem); /* Adjust the left position */
     transform: translateX(-50%);
 }
 
@@ -176,8 +176,8 @@ div.hand {
     justify-content: flex-end; /* Move the content to the right */
     gap: 0.75rem; /* Add some space between elements */
     position: fixed;
-    bottom: 0;
-    left: 50%;
+    bottom: -24rem;
+    left: calc(50% + 0rem); /* Adjust the left position */
     transform: translateX(-50%);
 }
 
@@ -189,6 +189,21 @@ div.card {
     background-color: var(--blue);
 }
 
+#opponent-draw-pile {
+    /* Add styles to position to the left of the opponent's hand */
+    position: fixed;
+    top: 3rem;
+    left: calc(50% - 15rem); /* Adjust the left position */
+    transform: translateX(-50%);
+}
+
+#player-draw-pile {
+    /* Add styles to position to the right of the player's hand */
+    position: fixed;
+    bottom: -29.8rem;
+    left: calc(50% + 15rem); /* Adjust the left position */
+    transform: translateX(-50%);
+}
 
 
 .draw-pile {
@@ -235,6 +250,7 @@ div.draw-pile .card {
 p.card-count {
     font-size: x-large;
     font-weight: bold;
+    margin-top: 0;
 }
 
 .hidden {
