@@ -17,6 +17,9 @@ import {UpdateEnemyOverflow, UpdatePlayerOverflow, UpdateEnemyPlay, UpdateEnemyB
 let GameID;
 let host = false;
 
+const cardsTemplate = [{number:1, image:'./images/Ace.png'},{number:2, image:'./images/shoes.png'},
+{number:3, image:'./images/Trio.png'},{number:4, image:'./images/QuadBike.png'},{number:5, image:'./images/Five.png'}]
+
 // Attach click event listener to the button
 document.getElementById('HostButton').addEventListener('click', handleHostClick);
 
@@ -97,3 +100,4 @@ function FIREBASEINIT (GameID){
       PopulateGameBoard();
   })
 }
+
