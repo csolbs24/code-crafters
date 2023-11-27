@@ -5,16 +5,14 @@ function card(picture, value) {
 }
 
 // Drawing cards
-function PlayerDraw(amount, handSize)
+function PlayerDraw(amount, handSize, cardsTemplateArray)
 {
     let extras = 0;
     let cards = []
 
     for (let i=0; i< amount; i++)
     {
-        // card is an object with picture, integer value
-        let newCard = new card(null, Math.floor(Math.random() * 6) + 1);
-        newCard.picture = "https://picsum.photos/200"; // This should hopefully generate a new picture for each card drawn.
+        const newCard = cardsTemplateArray[Math.floor(Math.random() * 4) + 1]
         cards.push(newCard);
     }
 
@@ -23,7 +21,7 @@ function PlayerDraw(amount, handSize)
         if (handSize <= 5)
         {
             const PlayerHand = document.getElementById("PlayerHand");
-            const cardTemplate = `<div class="card"><p>`+cards[i].value+`</p></div>`;
+            const cardTemplate = `<div onClick="submitCard('`+i+`')" class="card"><img src="`+cards[i].image+`"></img><p>`+cards[i].number+`</p></div>`;
             PlayerHand.insertAdjacentHTML("beforeend", cardTemplate);
         }
         else
@@ -32,13 +30,14 @@ function PlayerDraw(amount, handSize)
         }
     }
     UpdatePlayerOverflow(extras);
+    return cards;
 }
 
 // Updating the bet pile
 function UpdatePlayerBet(card)
 {
     const playerBet = document.getElementById("PlayerBet");
-    const cardTemplate = `<div class="card"><p>`+card.value+`</p></div>`;
+    const cardTemplate = `<div class="card"><img src="`+cards[i].image+`"></img><p>`+card.number+`</p></div>`;
     playerBet.insertAdjacentHTML("beforeend", cardTemplate);
 }
 
@@ -77,7 +76,7 @@ function EnemyDraw(amount, handSize)
         if (handSize <= 5)
         {
             const EnemyHand = document.getElementById("EnemyHand");
-            const cardTemplate = `<div class="card"><p>`+cards[i].value+`</p></div>`;
+            const cardTemplate = `<div class="card"><p>Some Image Here</p></div>`;
             EnemyHand.insertAdjacentHTML("beforeend", cardTemplate);
         }
         else

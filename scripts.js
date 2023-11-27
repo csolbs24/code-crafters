@@ -16,9 +16,14 @@ import {UpdateEnemyOverflow, UpdatePlayerOverflow, UpdateEnemyPlay, UpdateEnemyB
 
 let GameID;
 let host = false;
+let userPlayableCards = [];
 
-const cardsTemplate = [{number:1, image:'./images/Ace.png'},{number:2, image:'./images/shoes.png'},
-{number:3, image:'./images/Trio.png'},{number:4, image:'./images/QuadBike.png'},{number:5, image:'./images/Five.png'}]
+const cardsTemplate = [
+  {number:1, image:'./images/Ace.png'},
+  {number:2, image:'./images/shoes.png'},
+{number:3, image:'./images/Trio.png'},
+{number:4, image:'./images/QuadBike.png'},
+{number:5, image:'./images/Five.png'}]
 
 // Attach click event listener to the button
 document.getElementById('HostButton').addEventListener('click', handleHostClick);
@@ -51,7 +56,7 @@ function handleJoinClick() {
 // THIS IS FOR ALL PLAYERS BEGINING
 function PopulateGameBoard(){
   // draw 5 times each
-  PlayerDraw(5,0);
+  userPlayableCards = PlayerDraw(5,0, cardsTemplate);
   EnemyDraw(5,0);
   // Set Timer
   Timer();
@@ -60,6 +65,15 @@ function PopulateGameBoard(){
 // ONLY FOR HOST PLAYER
 function HostGameBoard() {
   
+}
+
+function submitCard(cardNum)
+{
+  // if its the bet stage
+  UpdatePlayerBet(userPlayableCards[parseInt(cardNum)])
+
+  // if its the play stage
+  UpdatePlayerPlay
 }
 
 function Timer()
