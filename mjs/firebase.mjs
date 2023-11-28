@@ -1,5 +1,5 @@
 // FIREBASE: Creates User and Game if hosted
-function FIREBASECreateDatabase(GameID){
+export function FIREBASECreateDatabase(GameID){
     
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -16,7 +16,9 @@ function FIREBASECreateDatabase(GameID){
                 GameOver: false,
                 GameWinner: "",
                 RoundWinner:  "",
-                RoundOver: false,
+                Round: 0,
+                GameStarted: false,
+                Phase: "bet"
             });  
                 
             GameRef.onDisconnect().remove();
@@ -30,25 +32,84 @@ function FIREBASECreateDatabase(GameID){
         console.log(errorCode, errorMessage);
     });
 }
-
+ 
 // MAKE THIS RETURN ACTUAL VARIABLE
-async function FIREBASECheckForGame (GameID){
-    const GameRef = firebase.database().ref(`${GameID}`);
-    console.log(GameID)
-    GameRef.once('value')
-        .then((snapshot) => {
-            const gameData = snapshot.val();
-            {
-                // CHECK IF GAMEDATA IS NULL
-            };
-    });
-    return true;
+export async function FIREBASECheckForGame (GameID){
+    try {
+        const GameRef = firebase.database().ref();
+        const snapshot = await GameRef.child(GameID).get();
+        return snapshot.exists();
+    } catch {
+        console.error("NO GAME BY THAT ID")
+        return false
+    }
 }
-
-function FIREBASEStartGame(GameID)
+ 
+// Starts the game by setting a variable in the firebase
+export function FIREBASEStartGame(GameID)
 {
     const GameRef = firebase.database().ref(`${GameID}`);
     GameRef.update({ GameStarted: true });
 }
 
-export {FIREBASECreateDatabase, FIREBASECheckForGame, FIREBASEStartGame};
+// Updates the Phase
+export function FIREBASESetPhase(GameID, phase)
+{
+    const GameRef = firebase.database().ref(`${GameID}`);
+    GameRef.update({ Phase: phase });
+}
+
+// Updates the Round Number
+export function FIREBASEUpdateRound(GameID)
+{
+    const GameRef = firebase.database().ref(`${GameID}`);
+    GameRef.once('value', (snapshot) => {
+        const gameData = snapshot.val();
+        const round = gameData.Round + 1;
+        GameRef.update({ Round: round });
+    });
+
+}
+ 
+// updates the applicable players bet
+export function FIREBASESubmitBetCard(GameID, isHost, card)
+{
+    const GameRef = firebase.database().ref(`${GameID}`);
+    GameRef.once('value', (snapshot) => {
+        const gameData = snapshot.val();
+        if(isHost){
+            let currentBetCards = gameData.HostBetCards;
+
+            if (currentBetCards[0] === ""){
+                currentBetCards = [card];
+            }else {
+                currentBetCards.push(card);
+            }
+
+            GameRef.update({ HostBetCards: currentBetCards });
+        }
+        else{
+            let currentBetCards = gameData.PlayerBetCards;
+
+            if (currentBetCards[0] === ""){
+                currentBetCards = [card];
+            }else {
+                currentBetCards.push(card);
+            }
+            
+            GameRef.update({ PlayerBetCards: currentBetCards });
+        }
+    })
+}
+
+// updates the applicable players bet
+export function FIREBASESubmitPlayedCard(GameID, isHost, card)
+{
+    const GameRef = firebase.database().ref(`${GameID}`);
+    if(isHost){
+        GameRef.update({ HostSubmittedCard: card });
+    }
+    else{
+        GameRef.update({ PlayerSubmittedCard: card });
+    }
+}

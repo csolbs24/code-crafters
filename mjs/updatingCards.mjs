@@ -5,7 +5,7 @@ function card(picture, value) {
 }
 
 // Drawing cards
-function PlayerDraw(amount, handSize, cardsTemplateArray)
+export function PlayerDraw(amount, handSize, cardsTemplateArray)
 {
     let extras = 0;
     let cards = []
@@ -21,7 +21,7 @@ function PlayerDraw(amount, handSize, cardsTemplateArray)
         if (handSize <= 5)
         {
             const PlayerHand = document.getElementById("PlayerHand");
-            const cardTemplate = `<div onClick="submitCard('`+i+`')" class="card"><img src="`+cards[i].image+`"></img><p>`+cards[i].number+`</p></div>`;
+            const cardTemplate = `<div data-card-id="`+i+`" class="card"><img src="`+cards[i].image+`"></img><p>`+cards[i].number+`</p></div>`;
             PlayerHand.insertAdjacentHTML("beforeend", cardTemplate);
         }
         else
@@ -34,23 +34,23 @@ function PlayerDraw(amount, handSize, cardsTemplateArray)
 }
 
 // Updating the bet pile
-function UpdatePlayerBet(card)
+export function UpdatePlayerBet(card)
 {
     const playerBet = document.getElementById("PlayerBet");
-    const cardTemplate = `<div class="card"><img src="`+cards[i].image+`"></img><p>`+card.number+`</p></div>`;
+    const cardTemplate = `<div class="card"><img src="`+card.image+`"></img><p>`+card.number+`</p></div>`;
     playerBet.insertAdjacentHTML("beforeend", cardTemplate);
 }
 
 // Updating the cards played
-function UpdatePlayerPlay(card)
+export function UpdatePlayerPlay(card)
 {
     const playerPlayed = document.getElementById("PlayField");
-    const cardTemplate = `<div class="card"><p>`+card.value+`</p></div>`;
-    playerPlayed.insertAdjacentHTML = cardTemplate;
+    const cardTemplate = `<div class="card"><img src="`+card.image+`"></img><p>`+card.number+`</p></div>`;
+    playerPlayed.insertAdjacentHTML("beforeend", cardTemplate);
 }
 
 // Updating overflow deck
-function UpdatePlayerOverflow(amount)
+export function UpdatePlayerOverflow(amount)
 {
     const overflow = document.getElementById("PlayerOverflowCount");
     overflow.innerHTML = amount;
@@ -59,7 +59,7 @@ function UpdatePlayerOverflow(amount)
 // Duplicate versions of the above functions for the enemy.
 
 // Enemy Draw
-function EnemyDraw(amount, handSize)
+export function EnemyDraw(amount, handSize)
 {
     let extras = 0;
     let cards = []
@@ -88,26 +88,38 @@ function EnemyDraw(amount, handSize)
 }
 
 // Updating the bet pile
-function UpdateEnemyBet(card)
+export function UpdateEnemyBet(card)
 {
     const enemyBet = document.getElementById("EnemyBet");
-    const cardTemplate = `<div class="card"><p>`+card.value+`</p></div>`;
+    const cardTemplate = `<div class="card"><img src="`+card.image+`"></img><p>`+card.number+`</p></div>`;
     enemyBet.insertAdjacentHTML("beforeend", cardTemplate);
 }
 
 // Updating the cards played
-function UpdateEnemyPlay(card)
+export function UpdateEnemyPlay(card)
 {
     const enemyPlayed = document.getElementById("PlayField");
-    const cardTemplate = `<div class="card"><p>`+card.value+`</p></div>`;
-    enemyPlayed.insertAdjacentHTML = cardTemplate;
+    const cardTemplate = `<div class="card"><img src="`+card.image+`"></img><p>`+card.number+`</p></div>`;
+    enemyPlayed.insertAdjacentHTML("beforeend", cardTemplate);
 }
 
 // Updating overflow deck
-function UpdateEnemyOverflow(amount)
+export function UpdateEnemyOverflow(amount)
 {
     const overflow = document.getElementById("EnemyOverflowCount"); // ID needs to be made still
     overflow.innerHTML = amount;
 }
 
-export {UpdateEnemyOverflow, UpdatePlayerOverflow, UpdateEnemyPlay, UpdateEnemyBet, EnemyDraw, UpdatePlayerPlay, UpdatePlayerBet, PlayerDraw}
+// Update the Enemy hand
+export function UpdateEnemyHand()
+{
+    const EnemyHand = document.getElementById("EnemyHand")
+    EnemyHand.children[EnemyHand.children.length-1].remove()
+}
+
+// Reseting the Board
+export function ResetBoard(){
+    document.getElementById("EnemyBet").innerHTML = "";
+    document.getElementById("PlayField").innerHTML = "";
+    document.getElementById("PlayerBet").innerHTML = "";
+}
