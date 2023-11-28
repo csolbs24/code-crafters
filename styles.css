@@ -153,6 +153,18 @@ div.player-draw-pile .card {
     box-shadow: none;
 }
 
+div.opponent-draw-pile {
+    grid-area: opponent-draw-pile;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+div.opponent-draw-pile .card {
+    box-shadow: none;
+}
+
+
 .cards:nth-child(2) {
     z-index: 1;
 }

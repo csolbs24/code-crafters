@@ -10,7 +10,7 @@
 
 import { default as generateRandomNumber } from "./mjs/generateRandomNumber.mjs";
 
-import {FIREBASECreateDatabase, FIREBASECheckForGame, FIREBASEStartGame} from "./mjs/firebase.mjs";
+import {FIREBASECreateDatabase, FIREBASECheckForGame, FIREBASEStartGame, FIREBASESubmitBetCard} from "./mjs/firebase.mjs";
 
 import {UpdateEnemyOverflow, UpdatePlayerOverflow, UpdateEnemyPlay, UpdateEnemyBet, EnemyDraw, UpdatePlayerPlay, UpdatePlayerBet, PlayerDraw} from "./mjs/updatingCards.mjs";
 
@@ -38,6 +38,7 @@ function handleHostClick() {
 function handleJoinClick() {
   GameID = document.getElementById("gameGameID").value
   const gameExist = FIREBASECheckForGame(GameID);
+  console.log(gameExist)
 
   if (gameExist)
   {
@@ -86,6 +87,8 @@ function Timer()
 function FIREBASEINIT (GameID){
   const GameRef = firebase.database().ref(`${GameID}`);
   const GameStartedRef = GameRef.child("GameStarted");
+  const GameHostBetRef = GameRef.child("HostBetCards");
+  const GamePlayerBetRef = GameRef.child("PlayerBetCards");
 
   // Runs Every Time All the GameData Changes
   GameRef.on('value', (snapshot) => {
@@ -98,6 +101,22 @@ function FIREBASEINIT (GameID){
       const GameData = snapshot.val();
       // CALL CODE HERE
       PopulateGameBoard();
+  })
+
+  GameHostBetRef.on('value', (snapshot) => {
+    const HostBetData = snapshot.val();
+    if (host)
+    {
+      // Pupulate the Host Bet Area
+    }
+  })
+
+  GamePlayerBetRef.on('value', (snapshot) => {
+    const PlayerBetData = snapshot.val();
+    if (!host)
+    {
+      // Pupulate the Player Bet Area
+    }
   })
 }
 

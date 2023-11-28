@@ -1,5 +1,5 @@
 // FIREBASE: Creates User and Game if hosted
-function FIREBASECreateDatabase(GameID){
+export function FIREBASECreateDatabase(GameID){
     
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -32,23 +32,39 @@ function FIREBASECreateDatabase(GameID){
 }
 
 // MAKE THIS RETURN ACTUAL VARIABLE
-async function FIREBASECheckForGame (GameID){
-    const GameRef = firebase.database().ref(`${GameID}`);
-    console.log(GameID)
-    GameRef.once('value')
-        .then((snapshot) => {
-            const gameData = snapshot.val();
-            {
-                // CHECK IF GAMEDATA IS NULL
-            };
-    });
-    return true;
+export function FIREBASECheckForGame (GameID){
+    let gameExist;
+    try {
+        const GameRef = firebase.database().ref(`${GameID}`);
+        gameExist = true;
+    } catch {
+        gameExist = false;
+    }
+    return gameExist;
 }
 
-function FIREBASEStartGame(GameID)
+// Starts the game by setting a variable in the firebase
+export function FIREBASEStartGame(GameID)
 {
     const GameRef = firebase.database().ref(`${GameID}`);
     GameRef.update({ GameStarted: true });
 }
 
-export {FIREBASECreateDatabase, FIREBASECheckForGame, FIREBASEStartGame};
+// updates the applicable players bet
+export function FIREBASESubmitBetCard(GameID, isHost, card)
+{
+    const GameRef = firebase.database().ref(`${GameID}`);
+    GameRef.once('value', (snapshot) => {
+        const gameData = snapshot.val();
+        if(isHost){
+            const currentBetCards = gameData.HostBetCards;
+            currentBetCards.push(card);
+            GameRef.update({ HostBetCards: currentBetCards });
+        }
+        else{
+            const currentBetCards = gameData.PlayerBetCards;
+            currentBetCards.push(card);
+            GameRef.update({ PlayerBetCards: currentBetCards });
+        }
+    })
+}
