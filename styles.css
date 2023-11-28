@@ -205,6 +205,23 @@ div.card {
     transform: translateX(-50%);
 }
 
+p.bets {
+    font-size: xxx-large;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+#opponent-bets {
+    position: fixed;
+    left: calc(50% + 35rem);
+    transform: translateX(-50%);
+}
+
+#player-bets {
+    position: fixed;
+    left: calc(50% - 35rem);
+    transform: translateX(-50%);
+}
 
 .draw-pile {
     display: flex;
