@@ -10,7 +10,7 @@
 
 import { default as generateRandomNumber } from "./mjs/generateRandomNumber.mjs";
 
-import {FIREBASECreateDatabase, FIREBASECheckForGame, FIREBASEStartGame, FIREBASESubmitBetCard, FIREBASESetPhase, FIREBASESubmitPlayedCard, FIREBASEUpdateRound} from "./mjs/firebase.mjs";
+import {FIREBASECreateDatabase, FIREBASECheckForGame, FIREBASEStartGame, FIREBASESubmitBetCard, FIREBASESetPhase, FIREBASESubmitPlayedCard, FIREBASEUpdateRound, FIREBASEUpdateRoundWinner} from "./mjs/firebase.mjs";
 
 import {UpdateEnemyOverflow, UpdatePlayerOverflow, UpdateEnemyPlay, UpdateEnemyBet, EnemyDraw, UpdatePlayerPlay, UpdatePlayerBet, PlayerDraw, ResetBoard, UpdateEnemyHand} from "./mjs/updatingCards.mjs";
 
@@ -118,6 +118,43 @@ function checkForGameWinner(){
   return false;
 }
 
+function UpdateRoundWinner(winnerName){
+  if (winnerName != "")
+  {
+    const GameRef = firebase.database().ref(`${GameID}`);
+    GameRef.once('value', (snapshot) => {
+      const gameData = snapshot.val();
+  
+      let amountToDraw = 0;
+  
+      // If the host won
+      if (winnerName === "host")
+      {
+        amountToDraw = gameData.HostBetCards.length * 2;
+        if (host){
+          PlayerDraw(amountToDraw, userPlayableCards.length,cardsTemplate);
+        }
+        else {
+          // FIX THIS !!
+          EnemyDraw(amountToDraw, 5,cardsTemplate);
+        }
+      }
+      // if the player won
+      else if (winnerName != "host")
+      {
+        amountToDraw = gameData.PlayerBetCards.length * 2
+        if (host){
+          EnemyDraw(amountToDraw, 5,cardsTemplate);
+        }
+        else{
+          // FIX THIS !!
+          PlayerDraw(amountToDraw, userPlayableCards.length,cardsTemplate);
+        }
+      }
+    });
+  }
+}
+
 function checkForRoundWinner(){
   // ONLY THE HOST HAS TO DO THIS
   const GameRef = firebase.database().ref(`${GameID}`);
@@ -127,7 +164,29 @@ function checkForRoundWinner(){
     console.log(gameData.HostSubmittedCard)
     if (gameData.HostSubmittedCard[0] != "" && gameData.PlayerSubmittedCard[0] != "")
     {
-      // THIS IS WHERE YOU DO THE MATH TO SEE WHO WON ( I DONT REMEMBER HOW THIS IS DECIDED)
+      // THIS IS WHERE YOU DO THE MATH TO SEE WHO WON (I DONT REMEMBER HOW THIS IS DECIDED)
+      var hostCard = gameData.HostSubmittedCard
+      var playerCard = gameData.PlayerSubmittedCard
+      
+
+      if (hostCard.number == 1 && playerCard.number == 5)
+      {
+        FIREBASEUpdateRoundWinner(GameID, "host");
+      }
+      else if (playerCard.number == 1 && hostCard.number == 5)
+      {
+        FIREBASEUpdateRoundWinner(GameID, "player");
+      }
+      else if (hostCard.number > playerCard.number)
+      {
+        FIREBASEUpdateRoundWinner(GameID, "host");
+      }
+      else if (playerCard.number > hostCard.number)
+      {
+        FIREBASEUpdateRoundWinner(GameID, "player");
+      }
+
+      // END ROUND
       console.log("ROUND OVER!")
       const gameOver = checkForGameWinner()
       if (!gameOver){
@@ -149,6 +208,7 @@ function FIREBASEINIT (GameID){
   const PlayerSubmittedCardRef = GameRef.child("PlayerSubmittedCard");
 
   const RoundRef = GameRef.child("Round");
+  const RoundWinnerRef = GameRef.child("RoundWinner")
 
   // Runs Every Time the GameStarted Changes
   GameStartedRef.on('value', (snapshot) => {
@@ -217,6 +277,11 @@ function FIREBASEINIT (GameID){
       Timer()
     }
 
+  });
+
+  RoundWinnerRef.on('value', (snapshot) => {
+    const RoundWinner = snapshot.val();
+    UpdateRoundWinner(RoundWinner)
   });
 }
 

@@ -113,3 +113,10 @@ export function FIREBASESubmitPlayedCard(GameID, isHost, card)
         GameRef.update({ PlayerSubmittedCard: card });
     }
 }
+
+// updates the winner of the Round
+export function FIREBASEUpdateRoundWinner(GameID, name)
+{
+    const GameRef = firebase.database().ref(`${GameID}`);
+    GameRef.update({ RoundWinner: name });
+}
