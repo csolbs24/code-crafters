@@ -10,10 +10,6 @@
     display: none;
 }
 
-/* For debug purposes */
-* {
-    border: 1px solid red;
-}
 
 div.game-container {
     height: 95vh;
@@ -144,6 +140,13 @@ div.card > p {
 
 div.player-draw-pile {
     grid-area: player-draw-pile;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+div.opponent-draw-pile {
+    grid-area: opponent-draw-pile;
     display: flex;
     align-items: center;
     justify-content: space-around;

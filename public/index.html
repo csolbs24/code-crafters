@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bluff Bout</title>
     <link rel="stylesheet" href="styles.css">
 
     <!-- THIS IS FOR FIREBASE -->
@@ -23,14 +23,14 @@
         firebase.initializeApp(firebaseConfig);
     </script>
     <!-- THIS IS FOR FIREBASE-->
-    <script src="scripts.js" type="module"></script>
+    <script src="scripts01.js" type="module"></script>
 
 </head>
 <body>
     <div class="game-container">
 
         <div class="header">
-            <h1 class="headerText" id="gameName">BIG BETS</h1>
+            <h1 class="headerText" id="gameName">BLUFF BOUT</h1>
             <h3 class="headerText" id="gameID">GAMEID: ----</h3>
         </div>
 
@@ -45,7 +45,22 @@
         </div>
 
         <div class="opponent-draw-pile">
-            <h1>hello</h1>
+            <div class="cards cards-1 hidden">
+                <div class="card card-back"></div>
+            </div>
+            <div class="cards cards-2 hidden">
+                <div class="card card-back"></div><div class="card card-back"></div>
+            </div>
+            <div class="cards cards-3 hidden">
+                <div class="card card-back"></div><div class="card card-back"></div><div class="card card-back"></div>
+            </div>
+            <div class="cards cards-4 hidden">
+                <div class="card card-back"></div><div class="card card-back"></div><div class="card card-back"></div><div class="card card-back"></div>
+            </div>
+            <div class="cards cards-5 ">
+                <div class="card card-back"></div><div class="card card-back"></div><div class="card card-back"></div><div class="card card-back"></div><div class="card card-back"></div>
+            </div>
+            <p id="EnemyOverflowCount" class="card-count">0</p>
         </div>
 
         <div id="EnemyHand" class="opponent">
