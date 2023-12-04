@@ -146,12 +146,14 @@ function checkForGameWinner(){
   let EnemyDeckAmount = parseInt(document.getElementById("EnemyOverflowCount").innerHTML)
   if (PlayerHandAmount === 0 && PlayerDeckAmount === 0)
   {
-    console.log("YOU LOST!")
+    alert("YOU LOST!")
+    //console.log("YOU LOST!")
     return true;
   }
   else if (EnemyHandAmount === 0 && EnemyDeckAmount === 0)
   {
-    console.log("YOU WON!")
+    alert("YOU WON!")
+    //console.log("YOU WON!")
     return true;
   }
   else{
@@ -162,7 +164,8 @@ function checkForGameWinner(){
 function UpdateRoundWinner(winnerName){
   if (winnerName != "")
   {
-    console.log("ROUND WINNER: ",winnerName)
+    alert("ROUND WINNER: ",winnerName)
+    //console.log("ROUND WINNER: ",winnerName)
     const GameRef = firebase.database().ref(`${GameID}`);
     GameRef.once('value', (snapshot) => {
       const gameData = snapshot.val();
@@ -235,7 +238,8 @@ async function ResetRound(){
       }
     }
     else{
-      console.log("GAME OVER")
+      alert("GAME OVER")
+      //console.log("GAME OVER")
     }
 }
 
