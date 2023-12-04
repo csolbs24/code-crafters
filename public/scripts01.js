@@ -20,7 +20,7 @@ let userPlayableCards = [];
 
 const cardsTemplate = [
   {number:1, image:'./images/Ace.png'},
-  {number:2, image:'./images/shoes.png'},
+  {number:2, image:'./images/Shoes.png'},
   {number:3, image:'./images/Trio.png'},
   {number:4, image:'./images/QuadBike.png'},
   {number:5, image:'./images/Five.png'}
