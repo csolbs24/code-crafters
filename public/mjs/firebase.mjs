@@ -7,14 +7,9 @@ export function FIREBASECreateDatabase(GameID){
             GameRef.set({
                 HostBetCards: [""],
                 HostSubmittedCard: [""],
-                HostCardAmount: 5,
-                HostDeckAmount: 0,
                 PlayerBetCards: [""],
                 PlayerSubmittedCard: [""],
-                PlayerCardAmount: 5,
-                PlayerDeckAmount: 0,
-                GameOver: false,
-                GameWinner: "",
+                ExceptionCard: "",
                 RoundWinner:  "",
                 Round: 0,
                 GameStarted: false,
@@ -119,4 +114,28 @@ export function FIREBASEUpdateRoundWinner(GameID, name)
 {
     const GameRef = firebase.database().ref(`${GameID}`);
     GameRef.update({ RoundWinner: name });
+}
+
+// Resets the player submitted Cards
+export function FIREBASEResetSubmittedCards(GameID)
+{
+    const GameRef = firebase.database().ref(`${GameID}`);
+    GameRef.update({ HostSubmittedCard: [""] });
+    GameRef.update({ PlayerSubmittedCard: [""] });
+}
+
+// Resets the player submitted Cards
+export function FIREBASEResetBetCards(GameID)
+{
+    const GameRef = firebase.database().ref(`${GameID}`);
+    GameRef.update({ HostBetCards: [""] });
+    GameRef.update({ PlayerBetCards: [""] });
+}
+
+// sets the Exception Card so the other player knows
+
+export function FIREBASEExceptionCard(GameID, name)
+{
+    const GameRef = firebase.database().ref(`${GameID}`);
+    GameRef.update({ ExceptionCard: name });
 }

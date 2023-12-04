@@ -10,10 +10,6 @@
     display: none;
 }
 
-/* For debug purposes */
-* {
-    border: 1px solid red;
-}
 
 div.game-container {
     height: 95vh;
